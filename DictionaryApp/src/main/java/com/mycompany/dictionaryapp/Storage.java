@@ -19,10 +19,11 @@ import java.util.Map;
  *
  * @author thanh
  */
-public class Storage {
+public class Storage extends AbstractStorage {
      private final String FILE_NAME = "dictionary.txt";
 
 
+     @Override
     public HashMap<String, String> loadDictionary() {
         HashMap<String, String> map = new HashMap<>();
         File file = new File(FILE_NAME);
@@ -47,6 +48,7 @@ public class Storage {
     }
 
 
+     @Override
     public void saveDictionary(HashMap<String, String> dictionary) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_NAME))) {
             for (Map.Entry<String, String> entry : dictionary.entrySet()) {
