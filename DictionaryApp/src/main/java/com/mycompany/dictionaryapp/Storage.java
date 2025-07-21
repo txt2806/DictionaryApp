@@ -19,17 +19,17 @@ import java.util.Map;
  *
  * @author thanh
  */
-public class Storage extends AbstractStorage {
+public class Storage {
      private final String FILE_NAME = "dictionary.txt";
 
 
-     @Override
+    
     public HashMap<String, String> loadDictionary() {
-        HashMap<String, String> map = new HashMap<>();
+        HashMap<String, String> dictionary = new HashMap<>();
         File file = new File(FILE_NAME);
         if (!file.exists()) {
             System.out.println("Dictionary file not found. Creating a new one.");
-            return map;
+            return dictionary;
         }
 
         try (BufferedReader reader = new BufferedReader(new FileReader(FILE_NAME))) {
@@ -37,18 +37,18 @@ public class Storage extends AbstractStorage {
             while ((line = reader.readLine()) != null) {
                 String[] parts = line.split(":", 2);
                 if (parts.length == 2) {
-                    map.put(parts[0].toLowerCase(), parts[1]);
+                    dictionary.put(parts[0].toLowerCase(), parts[1]);
                 }
             }
         } catch (IOException e) { //chat gpt          
             System.out.println("Error reading dictionary file.");
         }
 
-        return map;
+        return dictionary;
     }
 
 
-     @Override
+ 
     public void saveDictionary(HashMap<String, String> dictionary) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_NAME))) {
             for (Map.Entry<String, String> entry : dictionary.entrySet()) {
@@ -59,4 +59,23 @@ public class Storage extends AbstractStorage {
             System.out.println("Error writing to dictionary file.");
         }
     }
+    
+  
+    public void showDictionaryFromFile() {
+        File file = new File(FILE_NAME);
+        if (!file.exists()) {
+            System.out.println("Dictionary file not found.");
+            return;
+    }
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(FILE_NAME))) {
+        String line;
+        while ((line = reader.readLine()) != null) {
+            System.out.println(line);
+        }
+    } catch (IOException e) {
+        System.out.println("Error reading dictionary file.");
+    }
+    }
+    
 }

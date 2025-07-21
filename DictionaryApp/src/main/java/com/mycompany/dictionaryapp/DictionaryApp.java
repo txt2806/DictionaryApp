@@ -21,7 +21,8 @@ public class DictionaryApp {
              System.out.println("------Menu-----");
             System.out.println("1. Add a new word");
             System.out.println("2.Look up a word");
-            System.out.println("3. Exit");
+            System.out.println("3. Show saved dictionary file");
+            System.out.println("4. Exit");
             System.out.println("\n Choose function:");
             String choice = sc.nextLine();
             
@@ -51,6 +52,11 @@ public class DictionaryApp {
                    
                     break;
                 case "3":
+                    System.out.println("=== Dictionary ===");
+                    manager.showDictionaryFromFile();
+                    break;
+                    
+                case "4":
                     manager.save();
                     System.out.println("Dictionary saved successfully.");
                     System.out.println("Exiting...");

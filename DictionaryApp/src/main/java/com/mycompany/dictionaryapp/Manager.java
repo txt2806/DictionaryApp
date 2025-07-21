@@ -2,6 +2,7 @@ package com.mycompany.dictionaryapp;
 
 
 import java.util.HashMap;
+import java.util.Map;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -24,9 +25,20 @@ public class Manager {
     }
     
     public String lookup(String word){
-        return dictionary.get(word.toLowerCase());
-        
+       if (dictionary.containsKey(word)) {
+            return dictionary.get(word);
+        }
+
+
+        for (Map.Entry<String, String> entry : dictionary.entrySet()) {
+            if (entry.getValue().toLowerCase().contains(word)) {
+                return entry.getKey();
+            }
+        }
+        return null;
     }
+    
+    
     
     public boolean addWord(String word, String meaning){
         word = word.toLowerCase();
@@ -38,4 +50,11 @@ public class Manager {
      public void save() {
         storage.saveDictionary(dictionary);
     }
+     
+     public void showDictionaryFromFile() {
+        storage.showDictionaryFromFile();
+    }
+     
+
+
 }
