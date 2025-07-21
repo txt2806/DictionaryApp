@@ -13,7 +13,7 @@ import java.util.Map;
  *
  * @author thanh
  */
-public class Manager {
+public class Manager implements IManager {
     private HashMap<String, String> dictionary;
     private Storage storage;
     
@@ -24,6 +24,7 @@ public class Manager {
         
     }
     
+    @Override
     public String lookup(String word){
        if (dictionary.containsKey(word)) {
             return dictionary.get(word);
@@ -40,6 +41,7 @@ public class Manager {
     
     
     
+    @Override
     public boolean addWord(String word, String meaning){
         word = word.toLowerCase();
         if(dictionary.containsKey(word)) return false;
@@ -47,10 +49,12 @@ public class Manager {
         return true;
     }
 
+    @Override
      public void save() {
         storage.saveDictionary(dictionary);
     }
      
+    @Override
      public void showDictionaryFromFile() {
         storage.showDictionaryFromFile();
     }

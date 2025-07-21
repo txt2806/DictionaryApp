@@ -40,7 +40,7 @@ public class Storage {
                     dictionary.put(parts[0].toLowerCase(), parts[1]);
                 }
             }
-        } catch (IOException e) { //chat gpt          
+        } catch (IOException e) {        
             System.out.println("Error reading dictionary file.");
         }
 
@@ -55,7 +55,7 @@ public class Storage {
                 writer.write(entry.getKey() + ":  " + entry.getValue());
                 writer.newLine();
             }
-        } catch (IOException e) {// chatgpt
+        } catch (IOException e) {
             System.out.println("Error writing to dictionary file.");
         }
     }
